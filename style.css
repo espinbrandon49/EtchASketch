@@ -1,0 +1,19 @@
+#container {
+  display: grid;
+  width: 960px;
+  height: 960px;
+  border: solid thin black;
+  grid-template-columns: repeat((squared(num)), 1fr);
+  align-items: auto;
+  align-content: auto;
+}
+.dive {
+  background-color: white;
+  border: solid thin black;
+  aspect-ratio: 1;
+}
+
+.hold {
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-columns: repeat(25, 1fr);
+}
