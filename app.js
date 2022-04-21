@@ -4,11 +4,15 @@ const button = document.getElementById('clearGrid').addEventListener
   ('click', buttonClick)
 const dives = document.getElementsByClassName('dive')
 
+function buttonClick() {
 let num = prompt('enter a number') 
+for (let i = 0; i < dives.length; i++) {
+  dives[i].style.display = 'none'
+}
+
 function squared (num){
   return num ** 2
 }  
-
 for (let i = 0; i < squared(num); i++) {
   let grid = document.createElement('div')
   grid.className = "dive"
@@ -18,8 +22,6 @@ for (let i = 0; i < squared(num); i++) {
   )
   document.getElementById('container').appendChild(grid)
 }
-
-function buttonClick() {
   for (let i = 0; i < dives.length; i++) {
     dives[i].style.backgroundColor = 'white'
   }
