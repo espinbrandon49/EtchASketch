@@ -1,6 +1,8 @@
 const container = document.querySelector('#container')
 const divs = document.querySelectorAll('div')
 const dives = document.getElementsByClassName('dive')
+let enterEventCount = 0
+let leaveEventCount = 0
 
 const button = document.getElementById('clearGrid').addEventListener
   ('click', buttonClick)
@@ -32,11 +34,7 @@ function buttonClick() {
     document.getElementById('container').appendChild(grid)
   }
 }
-
 function button2Click() {
-  // select random color
-
-
   // user select charcoal grid size
   let num = prompt('enter a number')
   container.setAttribute('style', `grid-template-columns: repeat(${num}, 1fr); grid-template-rows: repeat(${num}, 1fr);`);
@@ -50,9 +48,27 @@ function button2Click() {
   for (let i = 0; i < num * num; i++) {
     let grid = document.createElement('div')
     grid.className = "dive"
-    grid.addEventListener('mouseenter', () => grid.style.backgroundColor = 'black'
-    )
+
     document.getElementById('container').appendChild(grid)
+
+    grid.addEventListener('mouseenter', e => {
+      grid.style.backgroundColor = changeOpacity();
+      enterEventCount++;
+    })
+
+    function changeOpacity() {
+      if (grid.style.backgroundColor.match(/rgba/)) {
+        let currentOpacity = Number(grid.style.backgroundColor.slice(-4, -1));
+        if (currentOpacity <= 0.9) {
+          grid.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity + 0.1})`;
+          this.classList.add('gray');
+        }
+      } else if (this.classList == 'gray' && this.style.backgroundColor == 'rgb(0, 0, 0)') {
+        return;
+      } else {
+        grid.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+      }
+    }
   }
 }
 
