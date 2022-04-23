@@ -51,19 +51,18 @@ function button2Click() {
 
     document.getElementById('container').appendChild(grid)
 
-    grid.addEventListener('mouseenter', e => {
+    grid.addEventListener('mouseover', e => {
       grid.style.backgroundColor = changeOpacity();
       enterEventCount++;
     })
-
+    //increase shading 10%
     function changeOpacity() {
       if (grid.style.backgroundColor.match(/rgba/)) {
         let currentOpacity = Number(grid.style.backgroundColor.slice(-4, -1));
         if (currentOpacity <= 0.9) {
           grid.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity + 0.1})`;
-          this.classList.add('gray');
         }
-      } else if (this.classList == 'gray' && this.style.backgroundColor == 'rgb(0, 0, 0)') {
+      } else if (grid.style.backgroundColor == 'rgb(0, 0, 0)') {
         return;
       } else {
         grid.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
@@ -71,4 +70,3 @@ function button2Click() {
     }
   }
 }
-
